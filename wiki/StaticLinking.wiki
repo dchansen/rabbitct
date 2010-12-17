@@ -1,5 +1,5 @@
 #summary How to link RabbitCT statically
-#labels Documentation
+#labels Documentation,Phase-Implementation
 
 = Introduction =
 
