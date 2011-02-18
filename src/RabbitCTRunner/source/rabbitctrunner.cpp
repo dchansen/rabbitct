@@ -321,7 +321,7 @@ int main(int argc, const char* argv[])
 		maxError = max( maxError, absErr );
 		error += cerr * cerr;
 		rec_volume[i] = HU_ax;
-		unsigned int histIdx = floor(absErr); // truncate
+		unsigned int histIdx = (unsigned int) floor(absErr); // truncate
 		if (histIdx > NUM_BINS-1) histIdx = NUM_BINS-1;
 		++errorHist[histIdx];
 	}
