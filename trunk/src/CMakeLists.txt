@@ -1,9 +1,11 @@
-project(RabbitCT_pub)
+cmake_minimum_required(VERSION 2.4)
+project(RabbitCT)
 
 ##############################################################################
 # Subdirectories
 ##############################################################################
 
+subdirs(RabbitCTRunner)
 subdirs(modules)
 
 
@@ -13,6 +15,16 @@ subdirs(modules)
 
 set(RabbitCT_INCLUDE_DIRECTORIES
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    $ENV{INCLUDE}
+)
+
+
+##############################################################################
+# Linking
+##############################################################################
+
+set(RabbitCT_LINK_DIRECTORIES
+    $ENV{LIB}
 )
 
 
@@ -22,3 +34,4 @@ set(RabbitCT_INCLUDE_DIRECTORIES
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMake/FindTBB/")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMake/FindCUDA/")
+
