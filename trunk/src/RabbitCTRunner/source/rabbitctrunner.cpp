@@ -318,7 +318,7 @@ int main(int argc, const char* argv[])
 		if (HU_ax > 4095.0f) HU_ax = 4095.0f;
 		const float cerr = (HU_ax - (float)(ref_volume[i]));
 		const float absErr = fabs(cerr);
-		maxError = max( maxError, absErr );
+		maxError = max( maxError, (double) absErr );
 		error += cerr * cerr;
 		rec_volume[i] = HU_ax;
 		unsigned int histIdx = (unsigned int) floor(absErr); // truncate
