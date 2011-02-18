@@ -43,7 +43,7 @@ bool RCTUnloadAlgorithm(RabbitCtGlobalData * rcgd);
 {{{
 target_link_libraries(RabbitCTRunner
     ${RabbitCTRunner_LINK_LIBRARIES}
-    ../../../pub/modules/YourModuleName/Release/YourModuleName
+    ../modules/YourModuleName/Release/YourModuleName
     opencl
 )
 }}}
