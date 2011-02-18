@@ -68,8 +68,8 @@ FNCSIGN bool RCTUnloadAlgorithm(RabbitCtGlobalData* rcgd)
 
 inline double p_n(int i, int j)
 {
-	if (i>=0 && i<s_rcgd->S_x
-	    && j>=0 && j<s_rcgd->S_y)
+	if (i>=0 && i<(int)s_rcgd->S_x
+	    && j>=0 && j<(int)s_rcgd->S_y)
 		return s_rcgd->I_n[j * s_rcgd->S_x + i];
 
 	return 0.0;
