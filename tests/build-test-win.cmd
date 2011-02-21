@@ -21,7 +21,7 @@ SET GENERATOR="Visual Studio 9 2008 Win64"
 
 REM END CONFIGURATION
 
-SET TEST_ROOT="build-test-win"
+SET TEST_ROOT=build-test-win
 
 echo Before we get our hands dirty: cleaning up
 REM remove_directory is stronger than rmdir
