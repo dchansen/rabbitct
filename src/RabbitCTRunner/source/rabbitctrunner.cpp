@@ -353,6 +353,7 @@ int main(int argc, const char* argv[])
 	cout << endl;
 	cout << "--------------------------------------------------------------" << endl;
 	cout << "Quality of reconstructed volume:" << endl;
+	cout << "Root Mean Squared Error: " << sqrt(error) << " HU" << endl;
 	cout << "Mean Squared Error: " << error << " HU^2" << endl;
 	cout << "Max. Absolute Error: " << maxError << " HU" << endl;
 	
@@ -374,8 +375,8 @@ int main(int argc, const char* argv[])
 	cout << endl;
 	cout << "--------------------------------------------------------------" << endl;
 	cout << "Runtime statistics:" << endl;
-	cout << "Total: " << ((long double)time_total / (long double)1000000.0) << " s (" << ((long double)time_total / (long double)1000.0) << " ms)" << endl;
-	cout << "Mean: " << (time_mean / (long double)1000000.0) << " s (" << (time_mean / (long double)1000.0) << " ms)" << endl << endl;
+	cout << "Total:   " << ((long double)time_total / (long double)1000000.0) << " s" << endl;
+	cout << "Average: " << (time_mean / (long double)1000.0) << " ms" << endl << endl;
 
 #if RCT_RUNNER_USE_CIMG
 	displayVolume(rec_volume, problem_size);
