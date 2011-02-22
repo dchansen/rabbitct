@@ -54,7 +54,7 @@ SET RELEASE_MODE=Release
 echo.
 REM cmake --build %TEST_ROOT%\%RELEASE_MODE%
 cmake -E chdir %TEST_ROOT% devenv.com RabbitCT.sln /build %RELEASE_MODE% /project ALL_BUILD
-
+if errorlevel 1 goto errBuildRelease
 echo.
 :skipreleasemode
 
