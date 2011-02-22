@@ -163,7 +163,7 @@ bool loadProjectionMatrices(RabbitCtHeader* p_rctheader, std::ifstream& ifsData,
 
 int main(int argc, const char* argv[])
 {
-	cout << "RabbitCT runner http://www.rabbitct.com/" << endl;
+	cout << "RabbitCTRunner http://www.rabbitct.com/" << endl;
 
 	if (argc != 5)
 	{
