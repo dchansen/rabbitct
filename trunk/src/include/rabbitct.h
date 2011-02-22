@@ -1,6 +1,7 @@
 #ifndef __LME_RABBITCT__H
 #define __LME_RABBITCT__H 1
 
+#include <iostream>
 
 /** \brief RabbitCT global data structure.
 
@@ -24,6 +25,31 @@ struct RabbitCtGlobalData
 	unsigned int	adv_numProjBuffers;	///< number of projection buffers in RAM
 	float **		adv_pProjBuffers;	///< projection image buffers, by default managed by RabbitCT
 	///@}
+
+	///@{ Some more variables for advanced usage.
+	unsigned int	adv_N;                   ///< total number of projections
+	unsigned int	adv_projNumber;          ///< current projection number [0..495]
+	double**        adv_ppProjMatrixBuffers; ///< all N projection matrices
+	unsigned int	adv_numAvailProjs;       ///< number of available (RAM-buffered in adv_pProjBuffers) projections (can be lower than adv_numProjBuffers)
+	unsigned int	adv_firstProjOfSubset;   ///< is this the first projection of a RAM-buffer-subset?
+	///@}
+
+	friend std::ostream& operator<<(std::ostream& out, const RabbitCtGlobalData& r) {
+		out << "L:   " << r.L   << "    S_x: " << r.S_x << "    S_y: " << r.S_y << std::endl;
+		out << "A_n: " << r.A_n << "    I_n: " << r.I_n << std::endl;
+		out << "R_L: " << r.R_L << "    O_L: " << r.O_L << "    f_L: " << r.f_L << std::endl;
+		out << "adv_numProjBuffers:      " << r.adv_numProjBuffers << std::endl;
+		out << "adv_pProjBuffers:        " << r.adv_pProjBuffers << std::endl;
+		out << "adv_ppProjMatrixBuffers: " << r.adv_ppProjMatrixBuffers << std::endl;
+		out << "adv_N:                   " << r.adv_N << std::endl;
+		out << "adv_firstProjOfSubset:   " << r.adv_firstProjOfSubset << std::endl;
+		out << "adv_projNumber:          " << r.adv_projNumber << std::endl;
+		out << "adv_numAvailProjs:       " << r.adv_numAvailProjs /* no final endl */;
+		return out;
+	}
+	friend std::ostream& operator<<(std::ostream& out, const RabbitCtGlobalData* pr) {
+		return out << (*pr);
+	}
 };
 
 
@@ -44,10 +70,11 @@ struct RabbitCtGlobalData
 #endif
 
 
+#define RCT_FNCN_PREPAREALGORITHM		"RCTPrepareAlgorithm"
 #define RCT_FNCN_LOADALGORITHM			"RCTLoadAlgorithm"
+#define RCT_FNCN_ALGORITHMBACKPROJ		"RCTAlgorithmBackprojection"
 #define RCT_FNCN_FINISHALGORITHM		"RCTFinishAlgorithm"
 #define RCT_FNCN_UNLOADALGORITHM		"RCTUnloadAlgorithm"
-#define RCT_FNCN_ALGORITHMBACKPROJ		"RCTAlgorithmBackprojection"
 
 
 #endif
