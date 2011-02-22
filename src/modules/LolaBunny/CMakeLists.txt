@@ -9,7 +9,7 @@ set(LolaBunny_SRCS_H
 )
 
 set(LolaBunny_SRCS_CPP
-    source/LolaBunny.cpp
+    LolaBunny.cpp
 )
 
 
@@ -18,8 +18,6 @@ set(LolaBunny_SRCS_CPP
 ##############################################################################
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${LolaBunny_INCLUDES}
     ${RabbitCT_INCLUDE_DIRECTORIES}
 )
 
@@ -29,11 +27,8 @@ include_directories(
 ##############################################################################
 
 link_directories(
-    ${LolaBunny_LINK_DIRECTORIES}
     ${RabbitCT_LINK_DIRECTORIES}
 )
-
-#message("LolaBunny link libraries: ${LolaBunny_LINK_LIBRARIES}")
 
 
 ##############################################################################
@@ -43,10 +38,6 @@ link_directories(
 add_library(LolaBunny SHARED
     ${LolaBunny_SRCS_CPP}
     ${LolaBunny_SRCS_H}
-)
-
-target_link_libraries(LolaBunny
-    ${LolaBunny_LINK_LIBRARIES}
 )
 
 
