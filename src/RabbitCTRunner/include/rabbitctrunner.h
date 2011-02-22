@@ -6,8 +6,6 @@
 
 // Defines
 // 
-#define _CRT_SECURE_NO_WARNINGS 1
-
 #ifdef WIN32
   #define __RCT_OS_WINDOWS 1
 #elif WIN64
