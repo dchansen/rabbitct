@@ -9,11 +9,11 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #ifdef WIN32
-  #define __RCT_OS_WINDOWS
+  #define __RCT_OS_WINDOWS 1
 #elif WIN64
-  #define __RCT_OS_WINDOWS
+  #define __RCT_OS_WINDOWS 1
 #else
-  #define __RCT_OS_LINUX
+  #define __RCT_OS_LINUX 1
 #endif
 
 // System includes
@@ -32,16 +32,13 @@
   #include <sys/types.h>
   #include <dlfcn.h>
 #endif
-#ifdef __RCT_OS_WINDOWS
-  #include <windows.h>
-  #include <time.h>
-#endif
 
 
 
 // Typedefs
 // 
 typedef bool (*TfncLoadAlgorithm)(RabbitCtGlobalData *);
+typedef bool (*TfncPrepareAlgorithm)(RabbitCtGlobalData *);
 typedef bool (*TfncAlgorithmIteration)(RabbitCtGlobalData *);
 typedef bool (*TfncUnloadAlgorithm)(RabbitCtGlobalData *);
 typedef bool (*TfncFinishAlgorithm)(RabbitCtGlobalData *);
@@ -55,7 +52,7 @@ struct RabbitCtHeader
 {
 	unsigned int img_sz[2];			// projection image dimension
 	unsigned int glb_numImg;		// number of projection images
-	float	     glb_HUScale[2];		// HU scaling factors
+	float	     glb_HUScale[2];	// HU scaling factors
 };
 
 
