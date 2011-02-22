@@ -5,11 +5,16 @@
 // 
 #include "rabbitctrunner.h" // USES (for OS detection)
 
+#ifdef __RCT_OS_WINDOWS
+	#include <windows.h>
+#endif // __RCT_OS_WINDOWS
 
-extern TfncLoadAlgorithm	s_fncLoadAlgorithm;
-extern TfncUnloadAlgorithm	s_fncUnloadAlgorithm;
-extern TfncUnloadAlgorithm	s_fncFinishAlgorithm;
-extern TfncAlgorithmIteration	s_fncAlgorithmIteration;
+
+extern TfncLoadAlgorithm      s_fncLoadAlgorithm;
+extern TfncPrepareAlgorithm   s_fncPrepareAlgorithm;
+extern TfncAlgorithmIteration s_fncAlgorithmIteration;
+extern TfncFinishAlgorithm    s_fncFinishAlgorithm;
+extern TfncUnloadAlgorithm    s_fncUnloadAlgorithm;
 
 
 #ifdef __RCT_OS_WINDOWS
