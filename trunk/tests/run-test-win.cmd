@@ -18,13 +18,13 @@ REM Choose where to store the reconstructed results.
 SET OUTPUT="\temp\rabbitct_run-test-win_out.rctd"
 
 REM Choose the module you want to test [default: LolaBunny].
-SET MODULE=LolaBunny
+SET MODULE=LolaOpenMP
 
 REM END CONFIGURATION
 
 SET TEST_ROOT=build-test-win
 
-echo Before we get our hands dirty: test if and files exist
+echo Before we get our hands dirty: test if directories and files exist
 IF NOT EXIST %DATASET% goto errDatasetMissing
 IF NOT EXIST %TEST_ROOT% goto errRunBuildTest
 
