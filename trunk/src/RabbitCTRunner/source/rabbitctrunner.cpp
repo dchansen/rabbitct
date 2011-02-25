@@ -179,6 +179,10 @@ int main(int argc, const char* argv[])
 
 	const float vol_res = volume_resolution(problem_size);
 
+	cout << "Module: " << module_file << endl;
+	cout << "Dataset: " << dataset_file << endl;
+	cout << "ProblemSize: " << problem_size << endl;
+
 	// random numbers
 	const int magicNum    = 591984;
 	const int magicNumEnd = 489195;
@@ -278,7 +282,7 @@ int main(int argc, const char* argv[])
 // BEGIN LOAD_MX
 //       load projection matrices
 //       @depends READ_HEADER, ALLOC_MXMEM
-	if (false == loadProjectionMatrices(&rctheader, ifsData, (double* const) pProjMatrixBuffers[0])) {
+	if (false == loadProjectionMatrices(&rctheader, ifsData, (double*) pProjMatrixBuffers[0])) {
 		cerr << "Error pre-loading projection matrices." << endl;
 		cleanup(rctgdata, projBuffers_managedByModule, out_volume_managedByModule);
 		return 1;
