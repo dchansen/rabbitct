@@ -28,13 +28,16 @@ set (GCC_CXX_OPT_FLAGS "${GCC_C_OPT_FLAGS}")
 ########
 if (WIN32)
     message("Optimization flags for Windows/Intel are untested.")
+    # /fast does probably not work, see comment for linux below.
     set (ICC_C_OPT_FLAGS    "/fast")
     set (ICPC_CXX_OPT_FLAGS "${ICC_C_OPT_FLAGS}")
 endif(WIN32)
 if (UNIX)
-    # -fast means: enable -xT -O3 -ipo -no-prec-div -static
-    #set (ICC_C_OPT_FLAGS    "-xT -O3 -ipo -mtune=core2 -march=core2 -msse3")
-    set (ICC_C_OPT_FLAGS    "-fast")
+    # -fast means: enable -xHOST -O3 -ipo -no-prec-div -static
+    # we cannot use -static, so we have to set all individual options
+    # if you cross-compile you may want to change -xHOST
+    #old: set (ICC_C_OPT_FLAGS    "-xT -O3 -ipo -mtune=core2 -march=core2 -msse3")
+    set (ICC_C_OPT_FLAGS    "-xHOST -ipo -no-prec-div")
     set (ICPC_CXX_OPT_FLAGS "${ICC_C_OPT_FLAGS}")
 endif(UNIX)
 
