@@ -1,5 +1,9 @@
 #define RCT_RUNNER_USE_CIMG 0
 
+// SYSTEM INCLUDES
+// 
+#include <string>
+
 // PROJECT INCLUDES
 // 
 #include "rabbitctrunner.h" // ISA
