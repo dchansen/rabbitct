@@ -3,6 +3,8 @@
 
 #include "rabbitct.h"
 
+const unsigned int RCT_VERSION = 2;
+
 
 // Defines
 // 
@@ -48,6 +50,7 @@ typedef unsigned long long int Ttime;
 // 
 struct RabbitCtHeader
 {
+	unsigned int rct_version;		// version number of dataset
 	unsigned int img_sz[2];			// projection image dimension
 	unsigned int glb_numImg;		// number of projection images
 	float	     glb_HUScale[2];	// HU scaling factors
