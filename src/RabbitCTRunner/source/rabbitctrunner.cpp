@@ -188,8 +188,10 @@ int main(int argc, const char* argv[])
 	cout << "ProblemSize: " << problem_size << endl;
 
 	// random numbers
-	const int magicNum    = 591984;
-	const int magicNumEnd = 489195;
+	//const int magicNum    = 591984; // version 1.x
+	//const int magicNumEnd = 489195; // version 1.x
+	const int magicNum    = 531982; // version 2.x
+	const int magicNumEnd = 289135; // version 2.x
 
 	RabbitCtHeader rctheader;
 	RabbitCtGlobalData rctgdata;
@@ -231,6 +233,21 @@ int main(int argc, const char* argv[])
 		return 1;
 	}
 // END READ_HEADER
+////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////
+// BEGIN CHECK_DATASET_VERSION
+	if (1240 == rctheader.rct_version || 1248 == rctheader.rct_version)
+	{
+		cerr << "You're using an old version of the dataset. Please get the latest one from http://www.rabbitct.com/." << endl;
+		return 1;
+	}
+	if (RCT_VERSION != rctheader.rct_version)
+	{
+		cerr << "Your dataset does not match the version of RabbitCTRunner. Please get matching versions from http://www.rabbitct.com/." << endl;
+		return 1;
+	}
+// END CHECK_DATASET_VERSION
 ////////////////////////////////////////////////////////////////
 
 	s_runTimeInUs = new Ttime[rctheader.glb_numImg];
@@ -579,6 +596,7 @@ int main(int argc, const char* argv[])
 	ofstream ofsresult(result_file.c_str(), ofstream::binary);
 
 	ofsresult.write((char*)(&magicNum), sizeof(int));
+	ofsresult.write((char*)(&RCT_VERSION), sizeof(int));
 	ofsresult.write((char*)(&problem_size), sizeof(int));
 	ofsresult.write((char*)(&rctheader.glb_numImg), sizeof(int));
 	ofsresult.write((char*)(s_runTimeInUs), rctheader.glb_numImg * sizeof(Ttime));
