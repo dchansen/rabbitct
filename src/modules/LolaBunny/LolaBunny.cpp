@@ -6,6 +6,7 @@
 
 // include the required header files
 #include <iostream>
+#include <cmath>
 #if !WIN32
 #include <string.h> // USES (memset)
 #endif
@@ -77,10 +78,10 @@ inline double p_n(int i, int j)
 
 inline double p_hat_n(double x, double y)
 {
-	int i = (int)x;
-	int j = (int)y;
-	double alpha = x - (int)x;
-	double beta  = y - (int)y;
+	int i = (int) floor(x);
+	int j = (int) floor(y);
+	double alpha = x - i;
+	double beta  = y - j;
 
 	return (1.0 - alpha) * (1.0 - beta) * p_n(i  , j  )
 	     +        alpha  * (1.0 - beta) * p_n(i+1, j  )
