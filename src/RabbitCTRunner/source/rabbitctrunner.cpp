@@ -83,7 +83,7 @@ void cleanup(RabbitCtGlobalData& rctgdata, bool projBuffers_managedByModule, boo
 
 void printHowTo(const char * pname)
 {
-	cout << "Usage: " << pname << " [Algorithm Library]" << " [Dataset File]" << " [Result File]" << " [ProblemSize: 128|256|512|1024]" << endl;
+	cout << "Usage: " << pname << " [Algorithm Library]" << " [Dataset File]" << " [Result File]" << " [ProblemSize: 128|256|512|1024]" << " [Optional: --prefetch-all-projections] "<< endl;
 }
 
 
@@ -169,11 +169,28 @@ int main(int argc, const char* argv[])
 {
 	cout << "RabbitCTRunner http://www.rabbitct.com/" << endl;
 
-	if (argc != 5)
+	if (argc != 5 && argc != 6)
 	{
 		cerr << "Error, wrong calling syntax: " << endl;
 		printHowTo(argv[0]);
 		return 1;
+	}
+	
+	bool prefetch_projections = false;
+	if (argc == 6)
+	{
+		std::string prefetch_argument = argv[5];
+		if (prefetch_argument.compare("--prefetch-all-projections"))
+		{
+			cerr << "Error, wrong calling syntax: " << endl;
+			printHowTo(argv[0]);
+			return 1;
+		}
+		else
+		{
+			cerr << "Prefetching all projections. Be sure to have enough free memory, otherwise heavy swapping may occur." << endl;
+			prefetch_projections = true;
+		}
 	}
 
 	std::string module_file  = argv[1];
@@ -383,7 +400,7 @@ int main(int argc, const char* argv[])
 		const unsigned int buf_size = numel_vol * sizeof(unsigned short) + 50 * 1024*1024;
 		char* buf = new char[buf_size];
 
-		if (1024 == problem_size) {
+		if (1024 == problem_size || prefetch_projections) {
 			// if the 1024^3 volume is used we assume to also have enough RAM to buffer all projections
 			num_proj_buffers = rctheader.glb_numImg;
 		}
